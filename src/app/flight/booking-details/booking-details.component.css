@@ -1,0 +1,42 @@
+.navbar-inner{
+    background: #123654;
+    opacity: 0.9;
+    transition: 0.3s ease;
+}
+.navbar-inverse{
+    color: rgba(255, 255, 255, 0.7);
+}
+.navbar-inverse:hover{
+    color: #fff;
+}
+
+#ticket{
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.card-header{
+    background-color: #FFBF00;
+    color: white;
+    font-weight: 5  00;
+}
+.card1{
+    margin-left: -50px;
+}
+.card2{
+    margin-right: -50px;
+}
+.card3{
+    margin-right: -50px;
+}
+hr{
+    width: 100%;
+}
+.ticket-btn{
+    margin-top: 30px;
+    background-color: #123654;
+    color: white;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+}

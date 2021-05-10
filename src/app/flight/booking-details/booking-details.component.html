@@ -1,0 +1,174 @@
+<nav class="navbar navbar-inner navbar-expand-lg p-3 fixed-top">
+    <a class="navbar-brand ml-5" href="flight">Flight Booking System</a>
+    <button class="navbar-toggler toggle" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-start" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-5 mt-2 mt-lg-0">
+          <li class="nav-item">
+              <a class="nav-link" role="button" href="flight">Home</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" role="button" href="airlines">Airlines</a>
+              </li>
+          <li class="nav-item">
+              <a class="nav-link" role="button" href="flight-list">Flight List</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" role="button" href="about">About</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" role="button" data-toggle="modal" data-target="#myModalL">Login</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" role="button" href="/signup" data-toggle="modal" data-target="#myModalS">Sign Up</a>
+          </li>
+        </ul>
+    </div>
+</nav>
+
+<section id="ticket" class="container">
+    <div class="row justify-items-center">
+        <div class="col-lg-9">
+            <div class="card card1">
+                <div class="card-header d-flex justify-content-between">
+                    <span> {{ flightDetails.from }} to {{ flightDetails.destination }} </span>
+                    <span>{{ flightDetails.day }}, {{ flightDetails.month }} {{ flightDetails.year }}  </span>
+                </div>
+                <div class="row card-body">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-4 text-center">
+                                <h2><b> {{ flightDetails.from }} {{ flightDetails.timeDepart }} </b></h2>
+                                <span> {{ flightDetails.day }}, {{ flightDetails.month }} {{ flightDetails.year }} </span>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <i class="fas fa-clock"></i><br>
+                                <span> {{ flightDetails.time }} </span>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <h2><b> {{ flightDetails.destination }} {{ flightDetails.timeArrival }} </b></h2>
+                                <span>{{ flightDetails.day }}, {{ flightDetails.month }} {{ flightDetails.year }}  </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row d-flex justify-content-between">
+                            <span><i class="fas fa-wifi"></i> Wifi</span>
+                            <span><i class="fas fa-plug"></i> In-seat Power</span> 
+                        </div>
+                        <div class="row d-flex justify-content-between mt-3">
+                            <span><i class="fas fa-utensils"></i> Food</span>
+                            <span><i class="fab fa-youtube"></i> On demand video</span> 
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer" style="background-color: white;">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Flight</th>
+                                <th class="text-center">Cabbin Baggage</th>
+                                <th class="text-center">Check-in Baggage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src="{{ flightDetails.flightImage }}" width="50" height="50" alt="">
+                                    {{ flightDetails.from }} - {{ flightDetails.destination }}
+                                </td>
+                                <td class="text-center align-middle">7 KG</td>
+                                <td class="text-center align-middle">7 KG</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card card2">
+                <div class="card-header d-flex justify-content-between">
+                    <span>Fare Summary</span>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-4">
+                        <span>Base Fare</span>
+                        <span>{{ baseFare | currency:'INR':'symbol-narrow' }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-5">
+                        <span>Taxes and Fees</span>
+                        <span>{{ flightDetails.fare - baseFare | currency:'INR':'symbol-narrow' }}</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-4">
+                        <span>Instant Off</span>
+                        <span>- {{ instantOff | currency:'INR':'symbol-narrow' }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Amount Payable</span>
+                        <span>{{ amountPayable | currency:'INR':'symbol-narrow' }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-items-center mt-5">
+        <div class="col-lg-9">
+            <div class="card card1">
+                <div class="card-header d-flex justify-content-between">
+                    <h3>Basic Fare</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><img src="https://img.icons8.com/bubbles/50/000000/money.png"/></td>
+                                <td class="align-middle">Get ₹175 Off with Code : INSTANT</td>
+                            </tr>
+                            <tr>
+                                <td><img src="https://img.icons8.com/emoji/48/000000/warning-emoji.png"/></td>
+                                <td class="align-middle">Pay heavy penalty on cancellation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card card3">
+                <div class="card-header d-flex justify-content-between">
+                    <span>Contact Details</span>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="ticketForm" (ngSubmit)="saveTicket()" method="POST">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" placeholder="Your Email" aria-describedby="emailHelp">
+                            <div *ngIf="submitted && f.name.errors" class="alert alert-danger al3">
+                              Name is required
+                            </div>
+                          </div>
+                        <div class="mb-3">
+                          <input type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Your Email" aria-describedby="emailHelp">
+                          <div *ngIf="submitted && f.email.errors" class="alert alert-danger al3">
+                            Email is required
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <input type="text" class="form-control" formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" placeholder="Mobile Number">
+                          <div *ngIf="submitted && f.mobile.errors" class="alert alert-danger al3">
+                            Mobile Number is required
+                          </div>
+                        </div>
+                        <button type="submit" class="btn ticket-btn">Pay Securely</button>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center">
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

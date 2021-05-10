@@ -1,0 +1,134 @@
+.navbar-inner{
+    background: #124265;
+    opacity: 0.9;
+    transition: 0.3s ease;
+}
+.navbar-inverse{
+    color: rgba(255, 255, 255, 0.7);
+}
+.navbar-inverse:hover{
+    color: #fff;
+}
+#header .navbar-nav li.active > a{
+    border: none;
+    border-bottom: 3px solid orange;
+}
+.header{
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('../../../assets/img/flight.jpg');
+    animation: 20s slideShow infinite linear 0s;
+    animation-timing-function: ease-in-out;
+    z-index: 1;
+    overflow: hidden;
+}
+.header::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.3;
+    z-index: -1;
+}
+@keyframes slideShow{
+    0%{
+        background-image: url('../../../assets/img/flight.jpg');
+    }
+    20%{
+        background-image: url('../../../assets/img/flight1.jpg');
+    }
+    40%{
+        background-image: url('../../../assets/img/flight2.jpg');
+    }
+    60%{
+        background-image: url('../../../assets/img/flight3.jpg');
+    }
+    80%{
+        background-image: url('../../../assets/img/flight4.jpg');
+    }
+    100%{
+        background-image: url('../../../assets/img/flight.jpg');
+    }
+}
+  
+.flight-search{
+    margin-top: 300px;
+    margin-right: 100px;
+}
+.center-div{
+    padding: 15px 15px 15px 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+}
+.input-group{
+    margin: 10px;
+}
+input[type="text"], input[type="email"], input[type="password"]{
+    border: none;
+    border-bottom: 1px solid #124265;
+    padding: 12px 35px;
+    background: none;
+    margin-top: 0px;
+}
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus{
+    outline: none;
+}
+.custom-select{
+    border: none;
+    border-radius: 0%;
+    border-bottom: 1px solid #124265;
+    background: none;
+    padding: 5px 200px 5px 0;
+    margin-top: 10px;
+}
+::placeholder, input{
+    color: gray;
+}
+.cal{
+    border-radius: 0%;
+}
+.btn{
+    color: #124265;
+    border-bottom: 1px solid #124265;
+}
+.button{
+    padding: 10px 60px;
+    background-color: orange;
+    border-color: #124265;
+    color: #fff;
+}
+
+@media (min-width: 576px) {
+    .rounded-nav {
+      border-radius: 50rem !important;
+    }
+  }
+  
+  @media (min-width: 576px) {
+    .rounded-nav .nav-link {
+      border-radius: 50rem !important;
+    }
+  }
+ 
+/* lined tabs */
+  
+.lined .nav-link {
+    border: none;
+    border-bottom: 3px solid transparent;
+} 
+.lined .nav-link:hover {
+    border: none;
+    border-bottom: 3px solid transparent;
+}
+.lined .nav-link.active {
+    background: none;
+    color: #fff;
+    border-color: orange;
+}

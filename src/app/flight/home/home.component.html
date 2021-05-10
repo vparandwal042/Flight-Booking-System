@@ -1,0 +1,20 @@
+<div class="container top-dest-section">
+    <div class="section-title text-center">
+        <h2>Top Destinations</h2>
+        <p>The most Searched Destinations</p>
+    </div>
+    <hr>
+    <div class="row bg-section">
+        <div class="bg" *ngFor = "let topDest of allTopDest">
+            <a href="#">
+                <img src= "{{ topDest.cityImage }}" alt="">
+                <div class="overlay">
+                    <h2>{{ topDest.destination }} from {{ topDest.from }}</h2>
+                    <div class="price">
+                        <p> {{ topDest.fare | currency:'INR':'symbol-narrow' }} </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

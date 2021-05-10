@@ -1,0 +1,67 @@
+.top-dest-section{
+    margin-bottom: 50px;
+}
+.bg, .overlay {
+    text-align: center;
+}
+img, .overlay {
+    transition: 0.3s all;
+    border-radius: 3px;
+}
+.bg-section{
+    margin-left: 25px;
+}
+.bg {
+    max-width: 31%;
+    position: relative;
+    margin: 5px;
+}
+.bg img {
+    width: 100%;
+    height: 40vh;
+}
+.bg .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    opacity: 0;
+}
+.bg .overlay h2 {
+    margin-top: 150px;
+    color: #fff;
+}
+.bg:hover .overlay {
+    opacity: 1;
+}
+.bg:hover img {
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+}
+.price{
+    background-color: orange;
+    color: white;
+    margin-left: 250px;
+    border-radius: 20px 0px 0px 20px;
+    padding: 12px 0 2px 0;
+    text-align: end;
+}
+.price p{
+    padding-right: 10px;
+}
+@media screen and (max-width: 1148px) {
+    .bg {
+        max-width: 48%;
+        margin: 1%;
+   }
+}
+@media screen and (max-width: 768px) {
+    .bg {
+        float: none;
+        max-width: 80%;
+        margin: 1% auto;
+   }
+}

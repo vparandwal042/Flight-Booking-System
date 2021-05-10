@@ -1,0 +1,83 @@
+<app-admin-dashboard></app-admin-dashboard>
+<div class="section-table">
+  <h1 class="table-title"><i class="fas fa-user" aria-hidden="true"></i> User Details</h1>
+  <div class="mb-3" style="width: 40%;">
+    <input class="form-control" type="text" placeholder="Search for..." [(ngModel)]="query">
+  </div>
+  <div class="card mb-3" id="table">
+      <div class="card-header d-flex justify-content-between align-items-center">
+          <div><b><i class="fas fa-user mr-2" aria-hidden="true"></i>User Table</b></div>
+          <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#User">Add User</button>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile Number</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor = "let user of allUsers | filter: query">
+                <td> {{ user.name }} </td>
+                <td> {{ user.email }} </td>
+                <td> {{ user.mobile }} </td>
+                <td class="text-center">
+                  <a role="button" class="btn btn-success" data-toggle="modal" data-target="#User" (click) = "edit(user._id)">Edit</a>
+                  <button type="button" (click) = "delete(user)" class="btn btn-danger ml-2">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="User" tabindex="-1" role="dialog" aria-labelledby="UserModal" aria-hidden="true">
+  <div class="modal-dialog modal-login">
+    <div class="modal-content">
+      <div class="modal-header">
+          <div style="text-transform: uppercase;">
+              <h1><b>{{ formHeading }}</b></h1>
+          </div>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup] = "UserForm" (ngSubmit) = "User()" method="POST">
+              <div class="form-group">
+                <i class="fas fa-user"></i>
+                <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && fs.name.errors }" placeholder="Name" required="required">
+                <div *ngIf="submitted && fs.name.errors" class="alert alert-danger mt-2">
+                  <div *ngIf="fs.name.errors.required">Name is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && fs.email.errors }" placeholder="Email" required="required">
+                <div *ngIf="submitted && fs.email.errors" class="alert alert-danger mt-2">
+                  <div *ngIf="fs.email.errors.required">Email is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <i class="fas fa-mobile"></i>
+                <input type="text" class="form-control" formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && fs.mobile.errors }" placeholder="Mobile Number" required="required">
+                <div *ngIf="submitted && fs.mobile.errors" class="alert alert-danger mt-2">
+                  <div *ngIf="fs.mobile.errors.required">Mobile Number is required</div>
+                </div>
+              </div>
+              <input hidden type="text" class="form-control" formControlName="id">
+              <input hidden type="password" class="form-control" formControlName="password">
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">{{ buttonName }}</button>
+                <button type="button" class="btn btn-secondary btn-block btn-lg" data-dismiss="modal">Cancel</button>
+              </div>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>

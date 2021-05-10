@@ -1,0 +1,31 @@
+.section-table{
+  margin-top: -420px;
+  margin-left: 265px;
+  margin-right: 15px;
+}
+.table-title{
+    text-align: center;
+    font-weight: 300;
+    line-height: 2rem;
+    font-size: 2.5rem;
+    padding: 10px;
+    text-transform: capitalize;
+}
+
+input[type=date] {
+  text-align: right;
+}
+
+input[type="date"]:before {
+  color: grey;
+  content: attr(placeholder) !important;
+  margin-right: 0.5em;
+}
+input[type="date"]:before {
+  color: grey;
+  content: attr(placeholder) !important;
+  margin-right: 0.5em;
+}
+input[type="date"]:focus:before {
+  content: 'Departure' !important;
+}

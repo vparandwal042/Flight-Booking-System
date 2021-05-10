@@ -1,0 +1,72 @@
+<app-admin-dashboard></app-admin-dashboard>
+<div class="section-table">
+    <h1 class="table-title">Airlines Details <img class="ml-2" src="../../../assets/img/plane.png" alt="" width="50" height="50"></h1>
+    <div class="mb-3" style="width: 40%;">
+      <input class="form-control" type="text" placeholder="Search for..." [(ngModel)]="query">
+    </div>
+    <div class="card mb-3" id="table">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div><b>Airlines Table</b><i class="fas fa-plane ml-2"></i></div>
+            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Airline">Add Airline</button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Airline Name</th>
+                  <th>Airline Image</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor = "let airline of allAirlines | filter: query">
+                  <td>{{ airline.airlineName }}</td>
+                  <td class="text-center"><img src="{{ airline.airlineImage }}" alt="" width="100" height="100"></td>
+                  <td class="text-center">
+                    <a role="button" class="btn btn-success mt-4" data-toggle="modal" data-target="#Airline" (click) = "edit(airline._id)">Edit</a>
+                    <button type="button" (click) = "delete(airline._id)" class="btn btn-danger ml-2 mt-4">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+</div>
+<div class="modal fade" id="Airline" tabindex="-1" role="dialog" aria-labelledby="AirlineModal" aria-hidden="true">
+    <div class="modal-dialog modal-login">
+      <div class="modal-content">
+        <div class="modal-header">
+            <div style="text-transform: uppercase;">
+                <h1><b>{{ formHeading }}</b></h1>
+            </div>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup] = "airlineForm" (ngSubmit) = "Airline()" method="POST">
+                <div class="form-group">
+                  <i class="fas fa-plane"></i>
+                  <input type="text" class="form-control" formControlName="airlineName" [ngClass]="{ 'is-invalid': submitted && fs.airlineName.errors }" placeholder="Airline Name" required="required">
+                  <div *ngIf="submitted && fs.airlineName.errors" class="alert alert-danger mt-2">
+                    <div *ngIf="fs.airlineName.errors.required">Airline Name is required</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <input type="file" class="custom-file-input" formControlName="airlineImage" [ngClass]="{ 'is-invalid': submitted && fs.airlineImage.errors }">
+                    <label class="custom-file-label" for="customFile"><i class="fas fa-camera mb-2"></i><div class="ml-4" style="font-size: 15px;">{{ image }}</div></label>
+                    <div *ngIf="submitted && fs.airlineImage.errors" class="alert alert-danger mt-2">
+                      <div *ngIf="fs.airlineImage.errors.required">Image is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-block btn-lg">{{ buttonName }}</button>
+                  <button type="button" class="btn btn-secondary btn-block btn-lg" data-dismiss="modal">Cancel</button>
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>

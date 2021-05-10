@@ -1,0 +1,149 @@
+<div class="header" id="header">
+  <app-nav></app-nav>
+  <div class="flight-search ml-5 pl-3">
+    <div class="center-div">
+      <div class="">
+          <div id="myTab2Content" class="tab-content">
+            <div id="one-way" role="tabpanel" aria-labelledby="home-tab" class="tab-pane show active">
+                <form [formGroup]="flightSearch" (ngSubmit)="searchFlight()" class="form-inline" method="POST">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div style="display: block;">
+                          <select class="custom-select" formControlName="from">
+                            <option value="" style="color: grey;" selected>Select From</option>
+                            <option *ngFor="let f of from">
+                              {{ f }}
+                            </option>
+                          </select>
+                          <div *ngIf="submitted && f.from.errors?.required" class="alert alert-danger al2">
+                            Please choose some value
+                          </div>
+                        </div>
+                      </div>
+                      <div class="input-group">
+                        <div style="display: block;">
+                          <select class="custom-select" formControlName="destination">
+                            <option value="" style="color: grey;" selected>Select Destination</option>
+                            <option *ngFor="let d of destination">
+                              {{ d }}
+                            </option>
+                          </select>
+                          <div *ngIf="submitted && f.destination.errors?.required" class="alert alert-danger al2">
+                            Please choose some value
+                          </div>
+                        </div>
+                      </div>
+                      <div class="input-group">
+                        <div style="display: block;">
+                          <div style="display: flex;">
+                            <input type="text" formControlName="departure" [ngClass]="{ 'is-invalid': submitted && f.departure.errors }" placeholder="Departure" name="departure" ngbDatepicker #departure="ngbDatepicker">
+                            <div class="input-group-append">
+                              <button class="btn" (click)="departure.toggle()" type="button"><i class="fas fa-calendar"></i></button>
+                            </div>
+                          </div>
+                          <div *ngIf="submitted && f.departure.errors" class="alert alert-danger al3">
+                            Departure Field is required
+                          </div>
+                        </div>
+                      </div>
+                      <div class="input-group">
+                        <!--<input type="text" formControlName="return" [ngClass]="{ 'is-invalid': submitted && f.return.errors }" [disabled] = "returnField" placeholder="Return" name="return" ngbDatepicker #return="ngbDatepicker">
+                        <div class="input-group-append">
+                          <button class="btn" [disabled] = "returnField" (click)="return.toggle()" type="button"><i class="fas fa-calendar"></i></button>
+                        </div>
+                        <div *ngIf="submitted && f.return.errors" class="alert alert-danger mt-2">
+                          <div *ngIf="f.return.errors.required">Return Field is required</div>
+                        </div>-->
+                        <button type="submit" class="btn btn-primary button">Search</button>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="myModalL" class="modal fade">
+  <div class="modal-dialog modal-login">
+    <div class="modal-content">
+      <div class="modal-header">				
+        <h4 class="modal-title">Login</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup] = "LoginForm" (ngSubmit) = "Login()" method="post">
+          <div class="form-group">
+              <i class="fas fa-envelope"></i>
+              <input type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submittedLogin && fl.email.errors }" placeholder="Email" required="required">
+              <div *ngIf="submittedLogin && fl.email.errors" class="alert alert-danger mt-2">
+                <div *ngIf="fs.email.errors.required">Email is required</div>
+              </div>            
+            </div>
+            <div class="form-group">
+              <i class="fas fa-lock"></i>
+              <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submittedLogin && fl.password.errors }" placeholder="Password" required="required">
+              <div *ngIf="submittedLogin && fl.password.errors" class="alert alert-danger mt-2">
+                <div *ngIf="fs.password.errors.required">Password is required</div>
+              </div>					
+            </div>
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#">Forgot Password?</a> or
+        <a role="button" data-toggle="modal" data-target="#myModalS" data-dismiss="modal">New Member?</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="myModalS" class="modal fade">
+  <div class="modal-dialog modal-login">
+    <div class="modal-content">
+      <div class="modal-header">				
+        <h4 class="modal-title">Sign Up</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup] = "signUpForm" (ngSubmit) = "signUp()" method="POST">
+          <div class="form-group">
+            <i class="fas fa-user"></i>
+            <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submittedSignUp && fs.name.errors }" placeholder="Name" required="required">
+            <div *ngIf="submittedSignUp && fs.name.errors" class="alert alert-danger mt-2">
+              <div *ngIf="fs.name.errors.required">Name is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submittedSignUp && fs.email.errors }" placeholder="Email" required="required">
+            <div *ngIf="submittedSignUp && fs.email.errors" class="alert alert-danger mt-2">
+              <div *ngIf="fs.email.errors.required">Email is required</div>
+            </div>            
+          </div>
+          <div class="form-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submittedSignUp && fs.password.errors }" placeholder="Password" required="required">
+            <div *ngIf="submittedSignUp && fs.password.errors" class="alert alert-danger mt-2">
+              <div *ngIf="fs.password.errors.required">Password is required</div>
+            </div>					
+          </div>
+          <div class="form-group">
+            <i class="fas fa-mobile"></i>
+            <input type="text" class="form-control" formControlName="mobile" [ngClass]="{ 'is-invalid': submittedSignUp && fs.mobile.errors }" placeholder="Mobile Number" required="required">
+            <div *ngIf="submittedSignUp && fs.mobile.errors" class="alert alert-danger mt-2">
+              <div *ngIf="fs.mobile.errors.required">Mobile Number is required</div>
+            </div></div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block btn-lg" value="Sign Up">Sign Up</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a role="button" data-toggle="modal" data-target="#myModalL" data-dismiss="modal">Already Member?</a>
+      </div>
+    </div>
+  </div>
+</div>

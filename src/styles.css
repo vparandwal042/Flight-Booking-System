@@ -1,0 +1,177 @@
+/* You can add global styles to this file, and also import other style files */
+html, body 
+{ 
+    height: 100%; 
+    scroll-behavior: smooth;
+}
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif!important; 
+}
+
+a { text-decoration: none!important; }
+
+.nav-link, .navbar-brand{
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.nav-link:hover, .navbar-brand:hover{
+    color: #fff;
+}
+
+.section-title {
+    margin-top: 50px;
+    text-align: center;
+    color: #124265;
+}
+.section-title h2 {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-bottom: 0;
+}
+.section-title p {
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #919191;
+    text-transform: capitalize;
+}
+hr{
+    text-align: center;
+    width: 25%;
+}
+
+#airlines .icon-boxes {
+    margin-top: 50px;
+}
+#airlines .icon-box {
+    padding: 0px 30px 20px 30px;
+    position: relative;
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 0 29px 0 rgba(18, 66, 101, 0.08);
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
+    z-index: 1;
+}
+#airlines .icon-box .title {
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+#airlines .icon-box .title a {
+    color: #124265;
+    transition: 0.3s;
+}
+#airlines .icon-box .description {
+    font-size: 15px;
+    line-height: 28px;
+    margin-bottom: 0;
+}
+#airlines .icon-box .icon {
+    margin-bottom: 20px;
+    padding-top: 10px;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+    font-size: 36px;
+    line-height: 1;
+    color: #2487ce;
+}
+#airlines .icon-box:hover {
+    transform: scale(1.08);
+}
+#airlines .icon-box:hover .title a {
+    color: #2487ce;
+}
+@media (min-width: 1024px) {
+    #airlines {
+        background-attachment: fixed;
+    }
+}
+@media (max-height: 800px) {
+    #airlines {
+        height: auto;
+    }
+}
+
+@media (max-width: 992px) {
+    #airlines {
+        height: auto;
+    }
+    #airlines h1 {
+        font-size: 28px;
+        line-height: 36px;
+    }
+    #airlines h2 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}
+
+.modal-login {
+	color: #636363;
+	width: 350px;
+}
+.modal-login .modal-content {
+	padding: 20px;
+	border-radius: 5px;
+	border: none;
+}
+.modal-login .modal-header {
+	border-bottom: none;
+	position: relative;
+	justify-content: center;
+}
+.modal-login h4 {
+	text-align: center;
+	font-size: 26px;
+}
+.modal-login  .form-group {
+	position: relative;
+}
+.modal-login i {
+	position: absolute;
+	left: 13px;
+	top: 11px;
+	font-size: 18px;
+}
+.modal-login .form-control {
+	padding-left: 40px;
+}
+.modal-login .form-control:focus {
+	border-color: #00ce81;
+}
+.modal-login .form-control, .modal-login .btn {
+	min-height: 40px;
+	border-radius: 3px; 
+}
+.modal-login .hint-text {
+	text-align: center;
+	padding-top: 10px;
+}
+.modal-login .close {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+}
+.modal-login .modal-footer {
+	background: #ecf0f1;
+	border-color: #dee4e7;
+	text-align: center;
+	margin: 0 -20px -20px;
+	border-radius: 5px;
+	font-size: 13px;
+	justify-content: center;
+}
+.modal-login .modal-footer a {
+	color: #999;
+}
+.trigger-btn {
+	display: inline-block;
+	margin: 100px auto;
+}
