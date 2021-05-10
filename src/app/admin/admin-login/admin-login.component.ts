@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UtilityService } from 'src/app/services/utility.service';
 import { AdminService } from '../admin.service';
 
 @Component({
@@ -19,7 +18,7 @@ export class AdminLoginComponent implements OnInit {
   submitted: any;
   loginDetails: any;
   admin_details: any;
-  constructor(private _router: Router, private fb: FormBuilder, private adminService: AdminService, private utilityService: UtilityService){
+  constructor(private _router: Router, private fb: FormBuilder, private adminService: AdminService){
     this.router = _router.url
   }
   ngOnInit(): void {

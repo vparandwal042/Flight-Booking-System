@@ -1,4 +1,9 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgControl, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
+import { FlightService } from 'src/app/flight/flight.service';
+import { AdminService } from '../admin.service';
 
 import { UserTableComponent } from './user-table.component';
 
@@ -8,7 +13,9 @@ describe('UserTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserTableComponent ]
+      imports: [ HttpClientModule, ReactiveFormsModule ],
+      declarations: [ UserTableComponent ],
+      providers: [ FlightService, AdminService, ConfirmDialogService, NgControl ]
     })
     .compileComponents();
   });

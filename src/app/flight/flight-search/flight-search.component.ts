@@ -14,7 +14,7 @@ export class FlightSearchComponent implements OnInit {
   public returnField = true
   public flightSearch: any
   public submitted: any
-  public allFlights: any
+  public allFlights: any = []
   public from: any
   public destination: any
   public fdata: any

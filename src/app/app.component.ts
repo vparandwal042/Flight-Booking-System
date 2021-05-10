@@ -7,11 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Flight-Booking-System';
   public showFlight: Boolean = true;
   public router: any
   constructor(private _router: Router){
-    this.router = _router.url
+    this.router = this._router.url
   }
   ngOnInit(){
   }

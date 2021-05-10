@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { from } from 'rxjs';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
 import { FlightService } from 'src/app/flight/flight.service';
-import { UtilityService } from 'src/app/services/utility.service';
 import { AdminService } from '../admin.service';
 
 @Component({
@@ -28,8 +27,7 @@ export class TopDestTableComponent implements OnInit {
     private flightService: FlightService, 
     private adminService: AdminService,
     private fb: FormBuilder,
-    private confirmDialogService: ConfirmDialogService,
-    private utilityService: UtilityService) { }
+    private confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit(): void {
     this.flightService.getAllTopDest("top-dest").subscribe(dest =>{
@@ -47,8 +45,6 @@ export class TopDestTableComponent implements OnInit {
       fare: ['', Validators.required],
       cityImage: [null, Validators.required],
     })
-    this.admin_details = this.utilityService.getadminDetail();
-    this.utilityService.setToken(this.admin_details)
   }
 
   get fs(){ return this.topDestForm.controls }

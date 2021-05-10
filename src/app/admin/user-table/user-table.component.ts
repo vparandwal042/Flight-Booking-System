@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { FlightService } from 'src/app/flight/flight.service';
 import { AdminService } from '../admin.service';
 import { ConfirmDialogService } from '../../confirm-dialog/confirm-dialog.service';
-import { UtilityService } from 'src/app/services/utility.service';
 
 @Component({
   selector: 'app-user-table',
@@ -26,8 +25,7 @@ export class UserTableComponent implements OnInit {
     private flightService: FlightService, 
     private adminService: AdminService,
     private fb: FormBuilder,
-    private confirmDialogService: ConfirmDialogService,
-    private utilityService: UtilityService) { }
+    private confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit(): void {
     this.flightService.getAllUsers("users").subscribe(users =>{
@@ -44,8 +42,6 @@ export class UserTableComponent implements OnInit {
       password: ['12345', Validators.required],
       mobile: ['', Validators.required],
     })
-    this.admin_details = this.utilityService.getadminDetail();
-    this.utilityService.setToken(this.admin_details)
   }
 
   get fs(){ return this.UserForm.controls }

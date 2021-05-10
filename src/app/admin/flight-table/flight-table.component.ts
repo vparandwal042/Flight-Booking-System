@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
 import { FlightService } from 'src/app/flight/flight.service';
-import { UtilityService } from 'src/app/services/utility.service';
 import { AdminService } from '../admin.service';
 
 @Component({
@@ -30,8 +29,7 @@ export class FlightTableComponent implements OnInit {
     private flightService: FlightService, 
     private adminService: AdminService,
     private fb: FormBuilder,
-    private confirmDialogService: ConfirmDialogService,
-    private utilityService: UtilityService) { }
+    private confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit(): void {
     this.flightService.getAllFlights("flights").subscribe(flights =>{
@@ -43,8 +41,6 @@ export class FlightTableComponent implements OnInit {
         a["day"] = this.depart[2]
       }
       console.log(typeof this.allFlights)
-      this.admin_details = this.utilityService.getadminDetail();
-      this.utilityService.setToken(this.admin_details)
     })
 
     this.formHeading = 'Add Flight';

@@ -11,12 +11,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class TicketDetailsComponent implements OnInit {
 
-  constructor(
-    private activatedRoute: ActivatedRoute, 
-    private flightService: FlightService,
-    private payService: PayService,
-    private fb: FormBuilder,
-    private route: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
 

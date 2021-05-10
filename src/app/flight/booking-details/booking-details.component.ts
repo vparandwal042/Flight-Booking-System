@@ -27,8 +27,7 @@ export class BookingDetailsComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, 
     private flightService: FlightService,
     private payService: PayService,
-    private fb: FormBuilder,
-    private router: Router) { }
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.viewTicket = false
@@ -46,7 +45,7 @@ export class BookingDetailsComponent implements OnInit {
       this.flightDetails["day"] = this.depart[2]
 
       this.amountPayable = this.flightDetails["fare"] - this.baseFare - this.instantOff;
-      console.log(this.flightDetails)
+      console.log(this.flightDetails["from"]);
 
     })
 
