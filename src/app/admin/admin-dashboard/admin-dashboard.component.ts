@@ -11,5 +11,8 @@ export class AdminDashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  logout(){
+    sessionStorage.removeItem("admin")
+    sessionStorage.removeItem('access-admin-token');
+  } 
 }

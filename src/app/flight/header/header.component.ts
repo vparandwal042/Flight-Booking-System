@@ -26,11 +26,11 @@ export class HeaderComponent implements OnInit {
   public flights: any
   public from: any = []
   public destination: any = []
+  isLogin: any
   constructor(
     private flightService: FlightService, 
     private fb: FormBuilder, 
-    private route: Router,
-    private flightDataService: FlightDataService
+    private route: Router
     ) {  }
 
   ngOnInit(): void {
@@ -123,13 +123,21 @@ export class HeaderComponent implements OnInit {
       this.flightService.login("users/login", this.LoginForm.value).subscribe(loginData =>{
         console.log(loginData)
         this.loginDetails = loginData
-        let _id = this.loginDetails["_id"]
         alert("Login Successfully!!")
+        sessionStorage.setItem("access-token", this.loginDetails["token"])
+        sessionStorage.setItem("login", "yes");
+
         this.LoginForm.reset();
         this.submittedLogin = false
-        this.route.navigate(['/user/' + _id])
+
+        this.route.navigate(['/flight'])
+        return true
       })
-  }
+    }
+    logout(){
+      sessionStorage.removeItem("login")
+      sessionStorage.removeItem('access-token');
+    }
 
   searchFlight(){
     this.submitted = true

@@ -15,11 +15,6 @@
     margin-bottom: 50px;
 }
 
-.card-header{
-    background-color: #FFBF00;
-    color: white;
-    font-weight: 5  00;
-}
 .card1{
     margin-left: -50px;
 }
@@ -28,6 +23,11 @@
 }
 .card3{
     margin-right: -50px;
+    transition: 0.3 ease-in-out;
+}
+.card3:hover{
+    transform: scale(1.03);
+    box-shadow: 0 0 10px 0 #124265;
 }
 hr{
     width: 100%;
@@ -39,4 +39,27 @@ hr{
     width: 100%;
     text-align: center;
     text-transform: uppercase;
+}
+.card{
+    box-shadow: 0 0 10px 0;
+    transition: 0.3s ease-in-out;
+}
+.card:hover{
+    box-shadow: 0 0 10px 0 #123654;
+}
+.card-header{
+    background: #FFBF00;
+    color: #123654;
+}
+.card-body, .card-footer table{
+    color: #123654;
+}
+.btn-book{
+    padding: 10px 30px;
+    background-color: #124265;
+    color: #FFBF00;
+}
+.heading{
+    font-size: 1.2rem;
+    font-weight: bold;
 }

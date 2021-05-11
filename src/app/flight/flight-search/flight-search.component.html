@@ -18,12 +18,6 @@
         <li class="nav-item">
             <a class="nav-link" role="button" href="about">About</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" role="button" data-toggle="modal" data-target="#myModalL">Login</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" role="button" data-toggle="modal" data-target="#myModalS">Sign Up</a>
-        </li>
       </ul>
   </div>
 </nav>
@@ -34,18 +28,18 @@
         <div class="card">
           <div class="card-header">
             <div class="row">
-              <div class="col-lg-3">
+              <div class="col-lg-3 heading">
                 <b>Airline: </b>{{ flight.flightName }}
               </div>
               <div class="col-lg-9">
-                <div class="row">
-                  <div class="col-lg-4">
+                <div class="row ">
+                  <div class="col-lg-4 heading">
                     Departure
                   </div>
-                  <div class="col-lg-4">
+                  <div class="col-lg-4 heading">
                     Duration
                   </div>
-                  <div class="col-lg-4">
+                  <div class="col-lg-4 heading">
                     Arrival
                   </div>
                 </div>
@@ -81,7 +75,7 @@
             </div>-->
             <div class="col-lg-2 text-center mt-4">
               <h4>{{ flight.fare | currency:'INR':'symbol-narrow' }} </h4>
-              <a href="booking-details/{{ flight._id }}" class="btn btn-primary">Book Now</a>
+              <a href="booking-details/{{ flight._id }}" class="btn btn-book">Book Now</a>
             </div>
           </div>
           <div class="row text-center mb-3" style="margin-top: -20px;">

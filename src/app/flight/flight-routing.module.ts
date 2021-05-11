@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from '../auth-guard.service';
 import { AboutComponent } from './about/about.component';
 import { AirlinesComponent } from './airlines/airlines.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
@@ -19,7 +20,7 @@ const routes: Routes = [
   },
   { path: 'nav', component: NavComponent },
   { path: 'flight-search', component: FlightSearchComponent },
-  { path: 'ticket-details', component: TicketDetailsComponent },
+  { path: 'ticket-details', component: TicketDetailsComponent, canActivate: [AuthGuardService] },
   { path: 'booking-details/:id', component: BookingDetailsComponent },
   { path: 'user/:id', component: UserProfileComponent },
 ];

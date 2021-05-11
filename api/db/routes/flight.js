@@ -2,9 +2,13 @@ const express = require('express');
 const router = express.Router();
 var multer  = require('multer');
 const { convertToObject } = require('typescript');
+const { check, validationResult} = require("express-validator");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const Flights = require('../models/flights.model');
 const Ticket = require('../models/ticket.model');
+const UserDetails  = require('../models/userDetails.model');
 
 const DIR = './public/';
 
@@ -63,7 +67,7 @@ router.post('/add', upload.single('flightImage'), (req, res, next) => {
   })
 })
 
-router.post('/ticket', (req, res) =>{
+router.post('/ticket',async (req, res) =>{
   const ticket = new Ticket({
     flightName: req.body.flightName,
     from: req.body.from,
@@ -72,6 +76,12 @@ router.post('/ticket', (req, res) =>{
     email: req.body.email,
     mobile: req.body.mobile,
     timeDepart: req.body.timeDepart
+  })
+  const user = new UserDetails({
+    name: req.body.name,
+    email: req.body.email,
+    password: "12345",
+    mobile: req.body.mobile,
   })
   ticket.save().then(result => {
     console.log(result);
@@ -82,6 +92,21 @@ router.post('/ticket', (req, res) =>{
         error: err
       });
   })
+
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(user.password, salt);
+  await user.save();
+
+  const payload = {
+      user: {
+          id: user.id
+      }
+  };
+
+  jwt.sign(payload, "randomString", { expiresIn: 10000 }, (err, token) => {
+      if (err) throw err;
+      res.status(200).json({ token });
+  });
 })
 
 router.route('/update/:id').put(upload.single('flightImage'), (req, res, next) => {

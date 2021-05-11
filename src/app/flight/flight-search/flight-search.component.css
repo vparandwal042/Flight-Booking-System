@@ -8,3 +8,37 @@
 .nav-link:hover{
     color: #fff!important;
 }
+
+.right{
+    font-size: 4rem;
+}
+h1{
+    color: #124265;
+    transition: 0.3s ease;
+}
+h1:hover{
+    color: #FFBF00;
+}
+
+.card{
+    box-shadow: 0 0 10px;
+    transition: 0.3s ease-in-out;
+    color: #124265;
+}
+.card-header{
+    background: #FFBF00;
+    color: #124265;
+}
+.card:hover{
+    transform: scale(1.03);
+    box-shadow: 0 0 10px 0 #124265;
+}
+.btn-book{
+    padding: 10px 30px;
+    background-color: #124265;
+    color: #FFBF00;
+}
+.heading{
+    font-size: 1.2rem;
+    font-weight: bold;
+}

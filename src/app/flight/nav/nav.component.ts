@@ -20,4 +20,13 @@ export class NavComponent implements OnInit {
     }
   }
 
+  Login(){
+    if(sessionStorage.getItem("login") === "yes"){
+      return true
+    }
+    else{
+      return false
+    }
+  }
+
 }

@@ -43,13 +43,22 @@ export class AdminLoginComponent implements OnInit {
         let _id = this.loginDetails["_id"]
         this.islogin = true
        // alert("Login Successfully!!")
+        sessionStorage.setItem("access-admin-token", this.loginDetails["token"])
+        sessionStorage.setItem("admin", "yes");
         this.adminForm.reset();
         this.submitted = false
       })
   }
   isLogin(){
-    if(this.islogin == true)
+    if(sessionStorage.getItem("admin") === "yes"){
       return true
-    return false
+    }
+    else{
+      return false
+    }
   }
+  logout(){
+    sessionStorage.removeItem("admin")
+    sessionStorage.removeItem('access-admin-token');
+  }  
 }

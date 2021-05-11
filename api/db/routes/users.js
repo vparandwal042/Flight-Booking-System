@@ -77,10 +77,8 @@ router.post("/login", async (req, res) => {
   
         jwt.sign(payload, "randomString", { expiresIn: 10000 }, (err, token) => {
             if (err) throw err;
-            res.status(200).json({ token });
+            res.status(200).json({ token }).send(user);
         });
-
-        res.send(user);
       } catch (e) {
         console.error(e);
         res.status(500).json({
