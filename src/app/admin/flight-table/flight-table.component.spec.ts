@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NgControl, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
 import { FlightService } from 'src/app/flight/flight.service';
 import { AdminService } from '../admin.service';
@@ -13,9 +14,9 @@ describe('FlightTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ HttpClientModule, ReactiveFormsModule ],
+      imports: [ HttpClientModule, ReactiveFormsModule, FormsModule, Ng2SearchPipeModule ],
       declarations: [ FlightTableComponent ],
-      providers: [ FlightService, AdminService, ConfirmDialogService, NgControl ]
+      providers: [ FlightService, AdminService, ConfirmDialogService ]
     })
     .compileComponents();
   });

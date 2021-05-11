@@ -27,7 +27,7 @@
       </ul>
   </div>
 </nav>
-<section id="airlines" class="d-flex justify-items-center mt-5">
+<section id="airlines" class="d-flex justify-items-center mt-5 mb-5">
     <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
       <h1 class="text-center mt-5">{{ from }} <img src="https://img.icons8.com/metro/64/000000/airplane-mode-on.png" style="margin-left: 20px;margin-right: 20px;"> {{ destination }}</h1>
       <div class="col-12 align-items-center justify-content-center mt-5" data-aos="zoom-in" data-aos-delay="200" *ngFor = "let flight of allFlights">
@@ -93,3 +93,4 @@
   
     </div>
 </section>
+<app-footer></app-footer>

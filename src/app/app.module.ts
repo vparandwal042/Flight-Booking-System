@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmDialogModule } from './confirm-dialog/confirm-dialog.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ConfirmDialogModule } from './confirm-dialog/confirm-dialog.module';
     Ng2SearchPipeModule,
     NgbModule,
     FlightModule,
+    AdminModule,
     BrowserAnimationsModule,
     ConfirmDialogModule
   ],

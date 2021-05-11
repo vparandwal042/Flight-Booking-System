@@ -1,4 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AdminService } from 'src/app/admin/admin.service';
+import { ConfirmDialogService } from 'src/app/confirm-dialog/confirm-dialog.service';
+import { FlightService } from '../flight.service';
 
 import { AirlinesComponent } from './airlines.component';
 
@@ -8,7 +12,9 @@ describe('AirlinesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AirlinesComponent ]
+      imports: [ HttpClientModule ],
+      declarations: [ AirlinesComponent ],
+      providers: [ FlightService, AdminService, ConfirmDialogService ]
     })
     .compileComponents();
   });
