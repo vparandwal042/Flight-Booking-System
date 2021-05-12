@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'nav', component: NavComponent },
   { path: 'flight-search', component: FlightSearchComponent },
   { path: 'ticket-details', component: TicketDetailsComponent, canActivate: [AuthGuardService] },
-  { path: 'booking-details/:id', component: BookingDetailsComponent },
+  { path: 'booking-details/:id', component: BookingDetailsComponent, canActivate: [AuthGuardService] },
   { path: 'user/:id', component: UserProfileComponent },
 ];
 

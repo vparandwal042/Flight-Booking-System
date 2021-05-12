@@ -122,7 +122,7 @@ export class FlightTableComponent implements OnInit {
         this.flightForm.value.flightImage,
         this.flightForm.value.time).subscribe(Data =>{
         console.log(Data)
-        alert("flight updated Successfully!!")
+        //alert("flight updated Successfully!!")
         this.ngOnInit();
       })
     }

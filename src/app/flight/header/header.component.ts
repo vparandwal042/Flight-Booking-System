@@ -108,7 +108,7 @@ export class HeaderComponent implements OnInit {
       console.log(this.signUpForm.value)
       this.flightService.signUp("users/signup", this.signUpForm.value).subscribe(signUpData =>{
         console.log(signUpData)
-        alert("Sign Up Successfully!!")
+        //alert("Sign Up Successfully!!")
         this.signUpForm.reset();
         this.submittedSignUp = false
       })
@@ -123,7 +123,7 @@ export class HeaderComponent implements OnInit {
       this.flightService.login("users/login", this.LoginForm.value).subscribe(loginData =>{
         console.log(loginData)
         this.loginDetails = loginData
-        alert("Login Successfully!!")
+        //alert("Login Successfully!!")
         sessionStorage.setItem("access-token", this.loginDetails["token"])
         sessionStorage.setItem("login", "yes");
 

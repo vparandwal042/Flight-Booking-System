@@ -58,7 +58,7 @@ export class TopDestTableComponent implements OnInit {
       console.log(this.addTopDest)
       this.adminService.addTopDest("topDest/add", this.topDestForm.value.from, this.topDestForm.value.destination, this.topDestForm.value.cityImage, this.topDestForm.value.fare).subscribe(Data =>{
         console.log(Data)
-        alert("Top Dest Added Successfully!!")
+        //alert("Top Dest Added Successfully!!")
         this.topDestForm.reset();
         this.submitted = false
         this.ngOnInit();
@@ -68,7 +68,7 @@ export class TopDestTableComponent implements OnInit {
       console.log(this.addTopDest)
       let id = this.topDestForm.value.id;
       this.adminService.updateAirline("airline/update/" + id, this.topDestForm.value.airlineName, this.topDestForm.value.airlineImage).subscribe(data =>{
-        alert("Updated");
+        //alert("Updated");
         this.ngOnInit();
       });
     }

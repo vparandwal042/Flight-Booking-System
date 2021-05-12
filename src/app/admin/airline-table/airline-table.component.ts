@@ -54,7 +54,7 @@ export class AirlineTableComponent implements OnInit {
       console.log(this.addAirline)
       this.adminService.addAirline("airline/add", this.airlineForm.value.airlineName, this.airlineForm.value.airlineImage).subscribe(airlineData =>{
         console.log(airlineData)
-        alert("Airline Added Successfully!!")
+        //alert("Airline Added Successfully!!")
         this.airlineForm.reset();
         this.submitted = false
         this.ngOnInit();
@@ -64,7 +64,7 @@ export class AirlineTableComponent implements OnInit {
       console.log(this.addAirline)
       let id = this.airlineForm.value.id;
       this.adminService.updateAirline("airline/update/" + id, this.airlineForm.value.airlineName, this.airlineForm.value.airlineImage).subscribe(data =>{
-        alert("Updated");
+        //alert("Updated");
         this.ngOnInit();
       });
     }

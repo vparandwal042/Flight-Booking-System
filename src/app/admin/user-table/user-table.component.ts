@@ -55,7 +55,7 @@ export class UserTableComponent implements OnInit {
       console.log(this.UserForm.value)
       this.flightService.signUp("users/signup", this.UserForm.value).subscribe(userData =>{
         console.log(userData)
-        alert("User Added Successfully!!")
+        //alert("User Added Successfully!!")
         this.UserForm.reset();
         this.submitted = false
         this.ngOnInit();
@@ -65,7 +65,7 @@ export class UserTableComponent implements OnInit {
       console.log(this.addUser)
       let id = this.UserForm.value.id;
       this.adminService.updateUser("users/update/" + id, this.UserForm.value).subscribe(data =>{
-        alert("Updated");
+        //alert("Updated");
         this.ngOnInit();
       });
     }
@@ -97,7 +97,7 @@ export class UserTableComponent implements OnInit {
     console.log(user._id)
     this.confirmDialogService.confirmThis("Really Want to delete?", () =>{
       this.adminService.deleteUser("users/delete/" + user._id).subscribe(user =>{
-        alert("deleted")
+        //alert("deleted")
         this.ngOnInit();
       })
     }, () =>{

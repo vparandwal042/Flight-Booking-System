@@ -18,7 +18,7 @@ export class AuthGuardService {
     if (sessionStorage.getItem("access-token")) {
       return true;
     }
-    this.confirmDialogService.confirmThis("Please Login to check your Ticket Details", () =>{
+    this.confirmDialogService.confirmThis("Please Login to know details", () =>{
       this.router.navigate(['/flight'])
     }, () =>{
 
