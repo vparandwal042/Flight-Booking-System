@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
     ) {  }
 
   ngOnInit(): void {
+
     this.signUpForm = this.fb.group({
       id: [0],
       name: ['', Validators.required],
@@ -66,6 +67,7 @@ export class HeaderComponent implements OnInit {
       this.destination = Array.from(new Set(tmpD))
     })
 
+    sessionStorage.removeItem("signup");
   }
   enableReturn(){
     this.returnField = false
@@ -109,9 +111,18 @@ export class HeaderComponent implements OnInit {
       this.flightService.signUp("users/signup", this.signUpForm.value).subscribe(signUpData =>{
         console.log(signUpData)
         //alert("Sign Up Successfully!!")
+        sessionStorage.setItem("signup", "yes");
         this.signUpForm.reset();
         this.submittedSignUp = false
       })
+  }
+  SignUpAlert(){
+    if(sessionStorage.getItem("signup") === "yes"){
+      return true
+    }
+    else{
+      return false
+    }
   }
 
   Login(){
@@ -133,11 +144,20 @@ export class HeaderComponent implements OnInit {
         this.route.navigate(['/flight'])
         return true
       })
+  }
+  logout(){
+    sessionStorage.removeItem("login");
+    sessionStorage.removeItem("signup");
+    sessionStorage.removeItem('access-token');
+  }
+  LoginAlert(){
+    if(sessionStorage.getItem("login") === "yes"){
+      return true
     }
-    logout(){
-      sessionStorage.removeItem("login")
-      sessionStorage.removeItem('access-token');
+    else{
+      return false
     }
+  }
 
   searchFlight(){
     this.submitted = true

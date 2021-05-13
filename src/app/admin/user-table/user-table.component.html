@@ -7,7 +7,7 @@
   <div class="card mb-3" id="table">
       <div class="card-header d-flex justify-content-between align-items-center">
           <div><b><i class="fas fa-user mr-2" aria-hidden="true"></i>User Table</b></div>
-          <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#User">Add User</button>
+          <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addUser" (click)="removeSession()">Add User</button>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -26,7 +26,7 @@
                 <td> {{ user.email }} </td>
                 <td> {{ user.mobile }} </td>
                 <td class="text-center">
-                  <a role="button" class="btn btn-success" data-toggle="modal" data-target="#User" (click) = "edit(user._id)">Edit</a>
+                  <a role="button" class="btn btn-success" data-toggle="modal" data-target="#updateUser" (click) = "edit(user._id)">Edit</a>
                   <button type="button" (click) = "delete(user)" class="btn btn-danger ml-2">Delete</button>
                 </td>
               </tr>
@@ -36,12 +36,12 @@
       </div>
     </div>
 </div>
-<div class="modal fade" id="User" tabindex="-1" role="dialog" aria-labelledby="UserModal" aria-hidden="true">
+<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="addUserModal" aria-hidden="true">
   <div class="modal-dialog modal-login">
     <div class="modal-content">
       <div class="modal-header">
           <div style="text-transform: uppercase;">
-              <h1><b>{{ formHeading }}</b></h1>
+              <h1><b>Add User</b></h1>
           </div>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -70,11 +70,58 @@
                   <div *ngIf="fs.mobile.errors.required">Mobile Number is required</div>
                 </div>
               </div>
-              <input hidden type="text" class="form-control" formControlName="id">
-              <input hidden type="password" class="form-control" formControlName="password">
+              <div *ngIf = "Alert()">
+                <div class="alert alert-success mt-2">
+                  <div>User {{ Message }}</div>
+                </div>
+              </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block btn-lg">{{ buttonName }}</button>
-                <button type="button" class="btn btn-secondary btn-block btn-lg" data-dismiss="modal">Cancel</button>
+                <button type="submit" role="button" (click)="removeSession()" class="btn btn-primary btn-block btn-lg">Add</button>
+                <button type="button" (click)="removeSession()" class="btn btn-secondary btn-block btn-lg" data-dismiss="modal">Cancel</button>
+              </div>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="updateUser" tabindex="-1" role="dialog" aria-labelledby="updateUserModal" aria-hidden="true">
+  <div class="modal-dialog modal-login">
+    <div class="modal-content">
+      <div class="modal-header">
+          <div style="text-transform: uppercase;">
+              <h1><b>Update User</b></h1>
+          </div>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup] = "updateUserForm" (ngSubmit) = "updateUser()" method="POST">
+              <div class="form-group">
+                <i class="fas fa-user"></i>
+                <input type="text" class="form-control" formControlName="name" placeholder="Name" required="required">
+
+              </div>
+              <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" class="form-control" formControlName="email" placeholder="Email" required="required">
+
+              </div>
+              <div class="form-group">
+                <i class="fas fa-mobile"></i>
+                <input type="text" class="form-control" formControlName="mobile" placeholder="Mobile Number" required="required">
+
+              </div>
+              <div *ngIf = "Alert()">
+                <div class="alert alert-success mt-2">
+                  <div>User {{ Message }}</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" role="button" (click)="removeSession()" class="btn btn-primary btn-block btn-lg">Update</button>
+                <button type="button" (click)="removeSession()" class="btn btn-secondary btn-block btn-lg" data-dismiss="modal">Cancel</button>
               </div>
             </form>
       </div>

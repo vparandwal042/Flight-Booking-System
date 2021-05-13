@@ -21,7 +21,7 @@ export class AuthGuardService {
     this.confirmDialogService.confirmThis("Please Login to know details", () =>{
       this.router.navigate(['/flight'])
     }, () =>{
-
+      this.router.navigate(['/flight'])
     })
     return false;
   }

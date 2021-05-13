@@ -14,14 +14,12 @@ export class TopDestTableComponent implements OnInit {
 
   public allTopDest: any
   public topDestForm: any;
-  addTopDest: any;
-  formHeading: any;
-  buttonName: any;
-  image: any;
+  public updateTopDestForm: any;
   submitted: any;
   editTopDest: any;
   public query: any = ""
   admin_details: any;
+  Message: any;
 
   constructor(
     private flightService: FlightService, 
@@ -34,11 +32,14 @@ export class TopDestTableComponent implements OnInit {
       this.allTopDest = dest;
     })
 
-    this.addTopDest = true
-    this.formHeading = 'Add Airline';
-    this.buttonName = 'Add';
-    this.image = 'Upload City Image'
     this.topDestForm = this.fb.group({
+      id: [0],
+      from: ['', Validators.required],
+      destination: ['', Validators.required],
+      fare: ['', Validators.required],
+      cityImage: [null, Validators.required],
+    })
+    this.updateTopDestForm = this.fb.group({
       id: [0],
       from: ['', Validators.required],
       destination: ['', Validators.required],
@@ -50,37 +51,40 @@ export class TopDestTableComponent implements OnInit {
   get fs(){ return this.topDestForm.controls }
 
   topDest(){
-    if(this.addTopDest === true){
       this.submitted = true
       if(this.topDestForm.invalid){
         return
       }
-      console.log(this.addTopDest)
       this.adminService.addTopDest("topDest/add", this.topDestForm.value.from, this.topDestForm.value.destination, this.topDestForm.value.cityImage, this.topDestForm.value.fare).subscribe(Data =>{
         console.log(Data)
-        //alert("Top Dest Added Successfully!!")
+        sessionStorage.setItem("topDest", "yes");
+        this.Message = "Added"
         this.topDestForm.reset();
         this.submitted = false
         this.ngOnInit();
       })
+  }
+
+  Alert(){
+    if(sessionStorage.getItem("topDest") === "yes"){
+      return true
+    }
+    if(sessionStorage.getItem("topDest-update") === "yes"){
+      return true
     }
     else{
-      console.log(this.addTopDest)
-      let id = this.topDestForm.value.id;
-      this.adminService.updateAirline("airline/update/" + id, this.topDestForm.value.airlineName, this.topDestForm.value.airlineImage).subscribe(data =>{
-        //alert("Updated");
-        this.ngOnInit();
-      });
+      return false
     }
+  }
+  removeSession(){
+    sessionStorage.removeItem("topDest");
+    sessionStorage.removeItem("topDest-update");
   }
 
   edit(topDestId: any){
-    this.formHeading = 'Edit Top Destination';
-    this.buttonName = 'Update';
-    this.addTopDest = false;
-    console.log(topDestId)
+    this.removeSession()
 
-    this.topDestForm = this.fb.group({
+    this.updateTopDestForm = this.fb.group({
       id: [topDestId],
       from: ['', Validators.required],
       destination: ['', Validators.required],
@@ -91,8 +95,16 @@ export class TopDestTableComponent implements OnInit {
     this.adminService.getTopDest("topDest/edit/" + topDestId).subscribe(userData =>{
       this.editTopDest = userData
       console.log(this.editTopDest)
-      this.topDestForm.patchValue(this.editTopDest)
+      this.updateTopDestForm.patchValue(this.editTopDest)
     })
+  }
+  updateTopDest(){
+    let id = this.updateTopDestForm.value.id;
+    this.adminService.updateTopDest("topDest/update/" + id, this.updateTopDestForm.value.from, this.updateTopDestForm.value.destination, this.updateTopDestForm.value.cityImage, this.updateTopDestForm.value.fare).subscribe(data =>{
+      sessionStorage.setItem("topDest-update", "yes");
+      this.Message = "Updated"
+      this.ngOnInit();
+    });
   }
 
   delete(TopDestId: any){

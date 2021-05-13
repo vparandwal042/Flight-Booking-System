@@ -96,6 +96,14 @@ export class AdminService {
       
       return this.http.put(`${this.ROOT_URL}/${uri}`, formData);
   }
+  updateTopDest(uri: string, from: string, destination: string, cityImage: File, fare: string){
+    var formData: any = new FormData();
+    formData.append("from", from);
+    formData.append("destination", destination);
+    formData.append("cityImage", cityImage);
+    formData.append("fare", fare);
+    return this.http.put(`${this.ROOT_URL}/${uri}`, formData);
+  }
   updateUser(uri: string, form: any){
     return this.http.put(`${this.ROOT_URL}/${uri}`, form);
   }

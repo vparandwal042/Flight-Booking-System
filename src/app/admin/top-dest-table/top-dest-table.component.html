@@ -7,7 +7,7 @@
   <div class="card mb-3" id="table">
       <div class="card-header d-flex justify-content-between align-items-center">
           <div><b>Top Destinations Table</b><i class="fas fa-map-marker ml-2" aria-hidden="true"></i></div>
-          <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#topDest">Add Destination</button>
+          <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addTopDest" (click)="removeSession()">Add Destination</button>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -28,7 +28,7 @@
                 <td class="text-center"> <img src="{{ topDest.cityImage }}" alt="" width="80" height="80"> </td>
                 <td> {{ topDest.fare }} </td>
                 <td class="text-center">
-                  <a role="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#topDest" (click) = "edit(topDest._id)">Edit</a>
+                  <a role="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#updateTopDest" (click) = "edit(topDest._id)">Edit</a>
                   <button type="button" (click) = "delete(topDest._id)" class="btn btn-danger ml-2 mt-3">Delete</button>
                 </td>
               </tr>
@@ -38,12 +38,12 @@
       </div>
     </div>
 </div>
-<div class="modal fade" id="topDest" tabindex="-1" role="dialog" aria-labelledby="topDestModal" aria-hidden="true">
+<div class="modal fade" id="addTopDest" tabindex="-1" role="dialog" aria-labelledby="addTopDestModal" aria-hidden="true">
   <div class="modal-dialog modal-login">
     <div class="modal-content">
       <div class="modal-header">
           <div style="text-transform: uppercase;">
-              <h1><b>{{ formHeading }}</b></h1>
+              <h1><b>Add Top Destination</b></h1>
           </div>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -79,9 +79,61 @@
                   <div *ngIf="fs.cityImage.errors.required">City Image is required</div>
                 </div>
               </div>
+              <div *ngIf = "Alert()">
+                <div class="alert alert-success mt-2">
+                  <div>Top Destination {{ Message }}</div>
+                </div>
+              </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block btn-lg">{{ buttonName }}</button>
-                <button type="button" class="btn btn-secondary btn-block btn-lg" data-dismiss="modal">Cancel</button>
+                <button type="submit" role="button" (click)="removeSession()" class="btn btn-primary btn-block btn-lg">Add</button>
+                <button type="button" (click)="removeSession()" class="btn btn-secondary btn-block btn-lg" data-dismiss="modal">Cancel</button>
+              </div>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="updateTopDest" tabindex="-1" role="dialog" aria-labelledby="updateTopDestModal" aria-hidden="true">
+  <div class="modal-dialog modal-login">
+    <div class="modal-content">
+      <div class="modal-header">
+          <div style="text-transform: uppercase;">
+              <h1><b>Edit Top Destination</b></h1>
+          </div>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup] = "updateTopDestForm" (ngSubmit) = "updateTopDest()" method="POST">
+              <div class="form-group">
+                <i class="fas fa-plane"></i>
+                <input type="text" class="form-control" formControlName="from" placeholder="From" required="required">
+              </div>
+              <div class="form-group">
+                <i class="fas fa-map-marker"></i>
+                <input type="text" class="form-control" formControlName="destination" placeholder="Destination" required="required">
+
+              </div>
+              <div class="form-group">
+                <i class="fas fa-rupee-sign"></i>
+                <input type="text" class="form-control" formControlName="fare" placeholder="Fare" required="required">
+
+              </div>
+              <div class="form-group">
+                <input type="file" class="custom-file-input" formControlName="cityImage">
+                <label class="custom-file-label" for="customFile"><i class="fas fa-camera mb-2"></i><div class="ml-4" style="font-size: 15px;">{{ image }}</div></label>
+              </div>
+              <div *ngIf = "Alert()">
+                <div class="alert alert-success mt-2">
+                  <div>Top Destination {{ Message }}</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" role="button" (click)="removeSession()" class="btn btn-primary btn-block btn-lg">Update</button>
+                <button type="button" (click)="removeSession()" class="btn btn-secondary btn-block btn-lg" data-dismiss="modal">Cancel</button>
               </div>
             </form>
       </div>

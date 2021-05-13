@@ -16,7 +16,7 @@
                             </option>
                           </select>
                           <div *ngIf="submitted && f.from.errors?.required" class="alert alert-danger al2">
-                            Please choose some value
+                            Please select city
                           </div>
                         </div>
                       </div>
@@ -29,14 +29,14 @@
                             </option>
                           </select>
                           <div *ngIf="submitted && f.destination.errors?.required" class="alert alert-danger al2">
-                            Please choose some value
+                            Please selec city
                           </div>
                         </div>
                       </div>
                       <div class="input-group">
                         <div style="display: block;">
                           <div style="display: flex;">
-                            <input type="text" formControlName="departure" [ngClass]="{ 'is-invalid': submitted && f.departure.errors }" placeholder="Departure" name="departure" ngbDatepicker #departure="ngbDatepicker">
+                            <input type="text" formControlName="departure" [ngClass]="{ 'is-invalid': submitted && f.departure.errors }" placeholder="Departure" name="departure" ngbDatepicker #departure="ngbDatepicker" autocomplete="off">
                             <div class="input-group-append">
                               <button class="btn" (click)="departure.toggle()" type="button"><i class="fas fa-calendar"></i></button>
                             </div>
@@ -88,6 +88,11 @@
                 <div *ngIf="fs.password.errors.required">Password is required</div>
               </div>					
             </div>
+            <div *ngIf = "LoginAlert()">
+              <div class="alert alert-success mt-2">
+                <div>Login Success!!</div>
+              </div>
+            </div>
           <div class="form-group">
             <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
           </div>
@@ -134,7 +139,14 @@
             <input type="text" class="form-control" formControlName="mobile" [ngClass]="{ 'is-invalid': submittedSignUp && fs.mobile.errors }" placeholder="Mobile Number" required="required">
             <div *ngIf="submittedSignUp && fs.mobile.errors" class="alert alert-danger mt-2">
               <div *ngIf="fs.mobile.errors.required">Mobile Number is required</div>
-            </div></div>
+            </div>
+          </div>
+          <div *ngIf = "SignUpAlert()">
+            <div class="alert alert-success mt-2">
+              <div>Sign Up Successfully!!</div>
+              <div>You Can Login Now</div>
+            </div>
+          </div>
           <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block btn-lg" value="Sign Up">Sign Up</button>
           </div>

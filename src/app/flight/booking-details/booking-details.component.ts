@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StorageService } from 'src/app/storage.service';
 import { FlightService } from '../flight.service';
 import { PayService } from '../pay.service';
 
@@ -22,15 +23,14 @@ export class BookingDetailsComponent implements OnInit {
   ticketForm: any
   submitted = false
   ticket: any;
-  viewTicket: any
 
   constructor(private activatedRoute: ActivatedRoute, 
     private flightService: FlightService,
     private payService: PayService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private storage: StorageService) { }
 
   ngOnInit(): void {
-    this.viewTicket = false
 
     this.activatedRoute.params.subscribe(data =>{
       this.flightId = data.id
@@ -91,6 +91,9 @@ export class BookingDetailsComponent implements OnInit {
 
   pay(id: any){
     this.options.amount = this.amountPayable*100
+    this.options.prefill.name = this.ticketForm.value.name
+    this.options.prefill.email = this.ticketForm.value.email
+    this.options.prefill.contact = this.ticketForm.value.mobile
     this.rzp1 = this.payService.nativeWindow.Razorpay(this.options);
     this.rzp1.open()
   }
@@ -111,13 +114,14 @@ export class BookingDetailsComponent implements OnInit {
       "name": this.ticketForm.value.name,
       "email": this.ticketForm.value.email,
       "mobile": this.ticketForm.value.mobile,
-      "timeDepart": this.flightDetails["timeDepart"]
+      "timeDepart": this.flightDetails["timeDepart"],
+      "departure": this.flightDetails["departure"]
     }
     this.flightService.bookFlight("flights/ticket", ticketData).subscribe(data =>{
       this.ticket = data
       console.log(this.ticket["_id"])
       this.pay(this.ticket["_id"])
-      this.viewTicket = true
+      localStorage.setItem('ticket', JSON.stringify(this.ticket));
     })
   }
 

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PayService } from '../pay.service';
 import { FlightService } from '../flight.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { StorageService } from 'src/app/storage.service';
 
 @Component({
   selector: 'app-ticket-details',
@@ -11,10 +12,20 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class TicketDetailsComponent implements OnInit {
 
-  constructor() { }
+  ticketDetails: any
+  depart: any;
+  constructor(private storage: StorageService) { }
 
   ngOnInit(): void {
-
+    this.ticketDetails = JSON.parse(localStorage.getItem('ticket') || '{}')
+      this.depart = this.ticketDetails["departure"].split("-");
+      this.ticketDetails["year"] = this.depart[0]
+      this.ticketDetails["month"] = this.getMonth(Number(this.depart[1]))
+      this.ticketDetails["day"] = this.depart[2]
+    console.log(this.ticketDetails)
+  }
+  getMonth(month: any) {
+    return ["Jan", "Feb","March","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"][month-1] || '';
   }
 
 }

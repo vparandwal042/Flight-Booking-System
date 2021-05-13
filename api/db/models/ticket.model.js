@@ -29,6 +29,10 @@ const TicketSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    departure: {
+        type: String,
+        required: true
+    }
 }, { collection: 'ticket' });
 
 const Ticket = mongoose.model('ticket', TicketSchema);

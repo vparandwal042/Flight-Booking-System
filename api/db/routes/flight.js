@@ -75,7 +75,8 @@ router.post('/ticket',async (req, res) =>{
     name: req.body.name,
     email: req.body.email,
     mobile: req.body.mobile,
-    timeDepart: req.body.timeDepart
+    timeDepart: req.body.timeDepart,
+    departure: req.body.departure
   })
   const user = new UserDetails({
     name: req.body.name,
@@ -105,7 +106,7 @@ router.post('/ticket',async (req, res) =>{
 
   jwt.sign(payload, "randomString", { expiresIn: 10000 }, (err, token) => {
       if (err) throw err;
-      res.status(200).json({ token });
+      res.status(200).json({ token }).send(ticket);
   });
 })
 

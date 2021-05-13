@@ -34,28 +34,28 @@
           <li></li>
         </ul>
         <div class="ticket">
-          <span class="airline">Air India</span>
-          <span class="airline airlineslip">Air India</span>
+          <span class="airline">{{ ticketDetails.flightName }}</span>
+          <span class="airline airlineslip">{{ ticketDetails.flightName }}</span>
           <span class="boarding">Boarding pass</span>
           <div class="content">
-            <span class="jfk">Pune</span>
+            <span class="jfk">{{ ticketDetails.from }}</span>
             <img style="margin-left: 120px; margin-top: 25px;" src="https://img.icons8.com/android/24/000000/airport.png"/>
-            <span class="sfo">Mumbai</span>
+            <span class="sfo">{{ ticketDetails.destination }}</span>
             
-            <span class="jfk jfkslip">Pune</span>
+            <span class="jfk jfkslip">{{ ticketDetails.from }}</span>
             <img style="margin-left: 330px; margin-top: 25px;" src="https://img.icons8.com/android/24/000000/airport.png"/>
-            <span class="sfo sfoslip">Mumbai</span>
+            <span class="sfo sfoslip">{{ ticketDetails.destination }}</span>
             <div class="sub-content">
-              <span class="watermark">Air India</span>
-              <span class="name">PASSENGER NAME<br><span>Rex, Anonasaurus</span></span>
+              <span class="watermark">{{ ticketDetails.flightName }}</span>
+              <span class="name">PASSENGER NAME<br><span>{{ ticketDetails.name }}</span></span>
               <span class="flight">FLIGHT N&deg;<br><span>X3-65C3</span></span>
               <span class="gate">GATE<br><span>11B</span></span>
               <span class="seat">SEAT<br><span>45A</span></span>
-              <span class="boardingtime">BOARDING TIME<br><span>8:25PM ON AUGUST 2013</span></span>
+              <span class="boardingtime">BOARDING TIME<br><span>{{ ticketDetails.timeDepart }} ON {{ ticketDetails.day }}, {{ ticketDetails.month }} {{ ticketDetails.year }} </span></span>
                   
                <span class="flight flightslip">FLIGHT N&deg;<br><span>X3-65C3</span></span>
                 <span class="seat seatslip">SEAT<br><span>45A</span></span>
-               <span class="name nameslip">PASSENGER NAME<br><span>Rex, Anonasaurus</span></span>
+               <span class="name nameslip">PASSENGER NAME<br><span>{{ ticketDetails.name }}</span></span>
             </div>
           </div>
           <div class="barcode"></div>

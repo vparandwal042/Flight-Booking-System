@@ -11,14 +11,13 @@ import { AdminService } from '../admin.service';
 })
 export class AirlineTableComponent implements OnInit {
 
+  public Message: any
+  public airlineData: any
   public allAirlines: any
   public airlineForm: any
-  public addAirline: any;
-  public formHeading: any
-  public buttonName: any
+  public updateAirlineForm: any
   public submitted: any
   public images: any
-  public image: any
   public editAirline: any
   public query: any = ""
   admin_details: any;
@@ -32,51 +31,55 @@ export class AirlineTableComponent implements OnInit {
     this.flightService.getAllAirlines("airlines").subscribe(airlines =>{
       this.allAirlines = airlines
     })
-    this.addAirline = true
-    this.formHeading = 'Add Airline';
-    this.buttonName = 'Add';
-    this.image = 'Upload Airline Image'
     this.airlineForm = this.fb.group({
+      id: [0],
+      airlineName: ['', Validators.required],
+      airlineImage: [null, Validators.required],
+    })
+    this.updateAirlineForm = this.fb.group({
       id: [0],
       airlineName: ['', Validators.required],
       airlineImage: [null, Validators.required],
     })
   }
 
-  get fs(){ return this.airlineForm.controls }
+  get fa(){ return this.airlineForm.controls }
 
   Airline(){
-    if(this.addAirline === true){
-      this.submitted = true
+    this.submitted = true
       if(this.airlineForm.invalid){
         return
       }
-      console.log(this.addAirline)
-      this.adminService.addAirline("airline/add", this.airlineForm.value.airlineName, this.airlineForm.value.airlineImage).subscribe(airlineData =>{
-        console.log(airlineData)
-        //alert("Airline Added Successfully!!")
+      this.adminService.addAirline("airline/add", this.airlineForm.value.airlineName, this.airlineForm.value.airlineImage).subscribe(AirlineData =>{
+        this.airlineData = AirlineData
+        sessionStorage.setItem("airline", "yes");
+        this.Message = "Added"
         this.airlineForm.reset();
         this.submitted = false
         this.ngOnInit();
       })
+  }
+
+  Alert(){
+    if(sessionStorage.getItem("airline") === "yes"){
+      return true
+    }
+    if(sessionStorage.getItem("airline-update") === "yes"){
+      return true
     }
     else{
-      console.log(this.addAirline)
-      let id = this.airlineForm.value.id;
-      this.adminService.updateAirline("airline/update/" + id, this.airlineForm.value.airlineName, this.airlineForm.value.airlineImage).subscribe(data =>{
-        //alert("Updated");
-        this.ngOnInit();
-      });
+      return false
     }
+  }
+  removeSession(){
+    sessionStorage.removeItem("airline");
+    sessionStorage.removeItem("airline-update");
   }
 
   edit(airId: any){
-    this.formHeading = 'Edit Airline';
-    this.buttonName = 'Update';
-    this.addAirline = false;
-    console.log(airId)
+    this.removeSession()
 
-    this.airlineForm = this.fb.group({
+    this.updateAirlineForm = this.fb.group({
       id: [airId],
       airlineName: ['', Validators.required],
       airlineImage: [null, Validators.required],
@@ -85,8 +88,16 @@ export class AirlineTableComponent implements OnInit {
     this.adminService.getAirline("airline/edit/" + airId).subscribe(userData =>{
       this.editAirline = userData
       console.log(this.editAirline)
-      this.airlineForm.patchValue(this.editAirline)
+      this.updateAirlineForm.patchValue(this.editAirline)
     })
+  }
+  updateAirline(){
+    let id = this.updateAirlineForm.value.id;
+      this.adminService.updateAirline("airline/update/" + id, this.updateAirlineForm.value.airlineName, this.updateAirlineForm.value.airlineImage).subscribe(data =>{
+        sessionStorage.setItem("airline-update", "yes");
+        this.Message = "Updated"
+        this.ngOnInit();
+      });
   }
 
   delete(airId: any){

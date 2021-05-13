@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmDialogModule } from './confirm-dialog/confirm-dialog.module';
 import { AdminModule } from './admin/admin.module';
+import { StorageService } from './storage.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { AdminModule } from './admin/admin.module';
     BrowserAnimationsModule,
     ConfirmDialogModule
   ],
-  providers: [],
+  providers: [StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,12 +14,10 @@ export class UserTableComponent implements OnInit {
   public allUsers: any
   public editUser: any
   public UserForm: any
+  public updateUserForm: any
   public submitted: any
-  public formHeading: any;
-  public buttonName: any;
-  public addUser: any;
   public query: any = ""
-  public admin_details: any
+  public Message: any
 
   constructor(
     private flightService: FlightService, 
@@ -31,11 +29,16 @@ export class UserTableComponent implements OnInit {
     this.flightService.getAllUsers("users").subscribe(users =>{
       this.allUsers = users;
     })
-    this.addUser = true
-    this.formHeading = 'Add User';
-    this.buttonName = 'Add';
   
     this.UserForm = this.fb.group({
+      id: [0],
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['12345', Validators.required],
+      mobile: ['', Validators.required],
+    })
+
+    this.updateUserForm = this.fb.group({
       id: [0],
       name: ['', Validators.required],
       email: ['', Validators.required],
@@ -46,38 +49,40 @@ export class UserTableComponent implements OnInit {
 
   get fs(){ return this.UserForm.controls }
   User(){
-    if(this.addUser === true){
       this.submitted = true
       if(this.UserForm.invalid){
         return
       }
-      console.log(this.addUser)
       console.log(this.UserForm.value)
       this.flightService.signUp("users/signup", this.UserForm.value).subscribe(userData =>{
         console.log(userData)
-        //alert("User Added Successfully!!")
+        sessionStorage.setItem("user", "yes");
+        this.Message = "Added"
         this.UserForm.reset();
         this.submitted = false
         this.ngOnInit();
       })
+  }
+  Alert(){
+    if(sessionStorage.getItem("user") === "yes"){
+      return true
+    }
+    if(sessionStorage.getItem("user-update") === "yes"){
+      return true
     }
     else{
-      console.log(this.addUser)
-      let id = this.UserForm.value.id;
-      this.adminService.updateUser("users/update/" + id, this.UserForm.value).subscribe(data =>{
-        //alert("Updated");
-        this.ngOnInit();
-      });
+      return false
     }
+  }
+  removeSession(){
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("user-update");
   }
 
   edit(userId: any){
-    this.formHeading = 'Edit User';
-    this.buttonName = 'Update';
-    this.addUser = false;
-    console.log(userId)
+    this.removeSession()
 
-    this.UserForm = this.fb.group({
+    this.updateUserForm = this.fb.group({
       id: [userId],
       name: ['', Validators.required],
       email: ['', Validators.required],
@@ -88,10 +93,17 @@ export class UserTableComponent implements OnInit {
     this.adminService.getUser("users/edit/" + userId).subscribe(userData =>{
       this.editUser = userData
       console.log(this.editUser)
-      this.UserForm.patchValue(this.editUser)
+      this.updateUserForm.patchValue(this.editUser)
     })
   }
-
+  updateUser(){
+    let id = this.updateUserForm.value.id;
+    this.adminService.updateUser("users/update/" + id, this.updateUserForm.value).subscribe(data =>{
+      sessionStorage.setItem("user-update", "yes");
+      this.Message = "Updated"
+      this.ngOnInit();
+    });
+  }
   
   delete(user: any){
     console.log(user._id)

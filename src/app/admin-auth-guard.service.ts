@@ -18,10 +18,10 @@ export class AdminAuthGuardService {
     if (sessionStorage.getItem("access-admin-token")) {
       return true;
     }
-    this.confirmDialogService.confirmThis("Please Login to check Admin Detailss", () =>{
+    this.confirmDialogService.confirmThis("Please Login to check Admin Details", () =>{
       this.router.navigate(['/admin'])
     }, () =>{
-
+      this.router.navigate(['/admin'])
     })
     return false;
   }
