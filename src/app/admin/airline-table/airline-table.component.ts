@@ -50,6 +50,7 @@ export class AirlineTableComponent implements OnInit {
       if(this.airlineForm.invalid){
         return
       }
+      //console.log(this.airlineForm.value.airlineImage)
       this.adminService.addAirline("airline/add", this.airlineForm.value.airlineName, this.airlineForm.value.airlineImage).subscribe(AirlineData =>{
         this.airlineData = AirlineData
         sessionStorage.setItem("airline", "yes");

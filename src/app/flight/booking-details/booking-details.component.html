@@ -139,7 +139,7 @@
                 <div class="card-body">
                     <form [formGroup]="ticketForm" (ngSubmit)="saveTicket()" method="POST">
                         <div class="mb-3">
-                            <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" placeholder="Your Email" aria-describedby="emailHelp">
+                            <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" placeholder="Your Name" aria-describedby="emailHelp">
                             <div *ngIf="submitted && f.name.errors" class="alert alert-danger al3">
                               Name is required
                             </div>
