@@ -62,4 +62,14 @@ describe('AdminLoginComponent', () => {
     expect(password.valid).toBeTruthy();
   })
 
+  it('Admin Form check - should check Admin Form is submitted', ()=>{
+    component.adminForm.controls['email'].setValue('admin@gmail.com');
+    component.adminForm.controls['password'].setValue('admin1234');
+
+    expect(component.adminForm.valid).toBeTruthy();
+
+    component.adminSubmit();
+    fixture.detectChanges();
+  })
+
 });

@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { By } from '@angular/platform-browser';
 
 import { HeaderComponent } from './header.component';
 
@@ -113,6 +114,15 @@ describe('HeaderComponent', () => {
     expect(password.valid).toBeTruthy();
   })
 
+  it('Login Form check - should check Login Form is submitted', ()=>{
+    component.LoginForm.controls['email'].setValue('vishal@gmail.com');
+    component.LoginForm.controls['password'].setValue('12345');
+
+    expect(component.LoginForm.valid).toBeTruthy();
+
+    component.Login();
+    fixture.detectChanges();
+  })
 
 
   it('SignUp Form check - should check SignUp is valid or not if no values entered', ()=>{
