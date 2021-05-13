@@ -25,6 +25,6 @@ describe('FlightSearchComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    expect(component.allFlights).toEqual(Object({}));
+    expect(component.allFlights).toEqual("[]");
   });
 });

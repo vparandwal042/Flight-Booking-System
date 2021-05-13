@@ -22,4 +22,5 @@ describe('TicketDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

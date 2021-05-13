@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { StorageService } from 'src/app/storage.service';
+import { ActivatedRoute } from '@angular/router';
 import { FlightService } from '../flight.service';
 import { PayService } from '../pay.service';
 
@@ -27,8 +26,7 @@ export class BookingDetailsComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, 
     private flightService: FlightService,
     private payService: PayService,
-    private fb: FormBuilder,
-    private storage: StorageService) { }
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
 

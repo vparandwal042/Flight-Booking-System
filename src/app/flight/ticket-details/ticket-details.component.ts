@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { PayService } from '../pay.service';
-import { FlightService } from '../flight.service';
-import { FormBuilder, Validators } from '@angular/forms';
-import { StorageService } from 'src/app/storage.service';
 
 @Component({
   selector: 'app-ticket-details',
@@ -14,11 +9,11 @@ export class TicketDetailsComponent implements OnInit {
 
   ticketDetails: any
   depart: any;
-  constructor(private storage: StorageService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.ticketDetails = JSON.parse(localStorage.getItem('ticket') || '{}')
-      this.depart = this.ticketDetails["departure"].split("-");
+      this.depart = (this.ticketDetails["departure"] || "").split("-");
       this.ticketDetails["year"] = this.depart[0]
       this.ticketDetails["month"] = this.getMonth(Number(this.depart[1]))
       this.ticketDetails["day"] = this.depart[2]
